@@ -11,7 +11,7 @@ const app = express();
     });
 
     app.get('/', function(req, res){
-        res.sendFile(__dirname + '/website/main.html');
+        res.sendFile(__dirname + '/website/index.html');
     });
 
     app.post('/w', function(req, res){
