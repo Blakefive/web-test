@@ -1,11 +1,31 @@
-var express = require('express')
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
 
-app.set('port', (process.env.PORT || 5000));
-app.get('/', function (req, res){
-    res.send("Hello World");
-});
+const app = express();
 
-app.listen(app.get('port'), function(){
-    console.log('App is running, server is listening on port ', app.get('port'));
-})
+
+    app.use(bodyParser.urlencoded({extended : true}));
+
+    app.listen(8080, function () {
+        console.log('listening on 8080')
+    });
+
+    app.get('/', function(req, res){
+        res.sendFile(__dirname + '/website/main.html');
+    });
+
+    app.post('/w', function(req, res){
+        console.log("W");
+    });
+
+    app.post('/s', function(req, res){
+        console.log("S");
+    });
+
+    app.post('/a', function(req, res){
+        console.log("A");
+    });
+
+    app.post('/d', function(req, res){
+        console.log("D");
+    });
