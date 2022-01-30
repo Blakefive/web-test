@@ -9,7 +9,7 @@ const app = express();
     app.listen(3000);
 
     app.get('/', function(req, res){
-        res.sendFile(__dirname + '/website/index.html');
+        res.sendFile(__dirname + '/index.html');
     });
 
     app.post('/w', function(req, res){
