@@ -10,7 +10,7 @@ const app = express();
 
     app.get('/', function(req, res){
         //res.sendFile(__dirname + '/index.html');
-        res.send({ hello: "world" });
+        res.send("Hello World");
     });
 
     app.post('/w', function(req, res){
