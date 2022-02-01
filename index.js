@@ -24,6 +24,6 @@ await connection.release();
 let get_connection = await db.getConnection(async conn => conn);
 let [user] = await get_connection.query(selectSql);
 
-app.get('/', (req, res) => {res.send(user); get_connection.release();})
+app.get('/', async(req, res) => {res.send(user); get_connection.release();})
 app.listen(port, () => {console.log("Example app listening on port ${port}");});
     })()
