@@ -34,5 +34,5 @@ const dbTest = async () => {
 	}
 };
 
-app.get('/', async(req, res) => {res.send(user); get_connection.release();})
+app.get('/', (req, res) => res.send(user))
 app.listen(port, () => {console.log("Example app listening on port ${port}");})
