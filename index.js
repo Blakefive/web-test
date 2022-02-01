@@ -1,7 +1,16 @@
 const express = require('express');
-const db = require('./config/db.config')
+var mysql = require('mysql');
 const app = express();
 const port = process.env.PORT || 3000;
+
+(async function(){
+    let db = mysql.createPool({
+        connectionLimit: 20,
+        host: "us-cdbr-east-05.cleardb.net",
+        user: "b80bb3614e25cd",
+        password: "30a5c7bf",
+        database: "heroku_96a107df1e5e545"
+      });
 
 let insertSql = 'INSERT INTO bmokey(name) VALUES("W")';
 let selectSql = 'SELECT *FROM bmokey';
@@ -17,4 +26,4 @@ let [user] = await get_connection.query(selectSql);
 
 app.get('/', (req, res) => {res.send(user); get_connection.release();})
 app.listen(port, () => {console.log("Example app listening on port ${port}");});
-
+    })()
