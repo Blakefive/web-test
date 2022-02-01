@@ -3,12 +3,12 @@ const db = require('./config/db.config')
 const app = express();
 const port = process.env.PORT || 3000;
 
-let insertSql = 'INSERT INTO bmokey(name) VALUES(?)';
+let insertSql = 'INSERT INTO bmokey(name) VALUES("W")';
 let selectSql = 'SELECT *FROM bmokey';
 
 let connection = await db.getConnection(async conn => conn);
 connection.beginTransaction();
-let bmokey = await connection.query(insertSql, ["W"]);
+let bmokey = await connection.query(insertSql);
 connection.commit();
 connection.release();
 
