@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+const check = "True";
 
 /* Step 1, create DB Pool */
 const pool = mysql.createPool({
@@ -21,18 +22,21 @@ const dbTest = async () => {
 			const [rows] = await connection.query('INSERT INTO bmokey(name) VALUES(?)', [name]);
 			await connection.commit(); // COMMIT
 			connection.release();
+            check = "True";
 			return rows;
 		} catch(err) {
 			await connection.rollback(); // ROLLBACK
 			connection.release();
 			console.log('Query Error');
+            check = "False";
 			return false;
 		}
 	} catch(err) {
 		console.log('DB Error');
+        check = "False";
 		return false;
 	}
 };
 
-app.get('/', (req, res) => {res.send("Insert Data"); res.send(dbTest);})
+app.get('/', (req, res) => {res.send("Insert Data"); res.send(check);})
 app.listen(port, () => {console.log("Example app listening on port ${port}");})
