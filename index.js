@@ -2,7 +2,6 @@ const mysql = require('mysql');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const check = "True";
 
 /* Step 1, create DB Pool */
 const pool = mysql.createPool({
@@ -13,30 +12,15 @@ const pool = mysql.createPool({
 });
 /* Step 2. get connection */
 const dbTest = async () => {
-	try {
 		const connection = await pool.getConnection(async conn => conn);
-		try {
-			/* Step 3. */
-			const name = 'HELLO';
-			await connection.beginTransaction(); // START TRANSACTION
-			const [rows] = await connection.query('INSERT INTO bmokey(name) VALUES(?)', [name]);
-			await connection.commit(); // COMMIT
-			connection.release();
-            check = "True";
-			return rows;
-		} catch(err) {
-			await connection.rollback(); // ROLLBACK
-			connection.release();
-			console.log('Query Error');
-            check = "False";
-			return false;
-		}
-	} catch(err) {
-		console.log('DB Error');
-        check = "False";
-		return false;
-	}
+		/* Step 3. */
+		const name = 'HELLO';
+		await connection.beginTransaction(); // START TRANSACTION
+		const [rows] = await connection.query('INSERT INTO bmokey(name) VALUES(?)', [name]);
+		await connection.commit(); // COMMIT
+		connection.release();
+		return rows;
 };
 
-app.get('/', (req, res) => {res.send("Insert Data"); res.send(check);})
+app.get('/', (req, res) => {res.send("Insert Data");})
 app.listen(port, () => {console.log("Example app listening on port ${port}");})
