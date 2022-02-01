@@ -5,7 +5,6 @@ const port = process.env.PORT || 3000;
 
 (async function(){
     let db = mysql.createPool({
-        connectionLimit: 20,
         host: "us-cdbr-east-05.cleardb.net",
         user: "b80bb3614e25cd",
         password: "30a5c7bf",
@@ -16,7 +15,7 @@ let insertSql = 'INSERT INTO bmokey(name) VALUES("W")';
 let selectSql = 'SELECT *FROM bmokey';
 
 let connection = await db.getConnection(async conn => conn);
-await connection.beginTransaction();
+//await connection.beginTransaction();
 let bmokey = await connection.query(insertSql);
 await connection.commit();
 await connection.release();
