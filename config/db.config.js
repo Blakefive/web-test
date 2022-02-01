@@ -5,5 +5,5 @@
     DB: "heroku_96a107df1e5e545"
   };
   */
- const check = "Hello World!! (check)";
- module.exports = {check};
+ var check = "Hello World!! (check)";
+ module.exports = check;
