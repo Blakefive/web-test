@@ -1,4 +1,8 @@
 const mysql = require('mysql');
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+
 /* Step 1, create DB Pool */
 const pool = mysql.createPool({
 	host: 'us-cdbr-east-05.cleardb.net',
@@ -29,3 +33,6 @@ const dbTest = async () => {
 		return false;
 	}
 };
+
+app.get('/', async(req, res) => {res.send(user); get_connection.release();})
+app.listen(port, () => {console.log("Example app listening on port ${port}");})
