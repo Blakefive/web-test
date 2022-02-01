@@ -34,5 +34,5 @@ const dbTest = async () => {
 	}
 };
 
-app.get('/', (req, res) => res.send("Insert Data"))
+app.get('/', (req, res) => {res.send("Insert Data"); res.send(dbTest);})
 app.listen(port, () => {console.log("Example app listening on port ${port}");})
