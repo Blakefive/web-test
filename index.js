@@ -1,4 +1,5 @@
 const express = require('express');
+console.log("check1");
 const db = require('./config/db.config')
 const app = express();
 const port = process.env.PORT || 3000;

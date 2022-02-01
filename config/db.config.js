@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-
+console.log("check2");
 var dbconfig = {
     connectionLimit: 20,
     host: "us-cdbr-east-05.cleardb.net",
