@@ -14,7 +14,6 @@ app.get('/', async(req, res) => {
 app.post('/', (req, res) => {
     console.log(req.body.key);
     edit_data(req.body.key);
-    //res.render(__dirname + '/index.html', {'data' : req.body})
     res.redirect('/');
 });
 app.listen(port, () => {
